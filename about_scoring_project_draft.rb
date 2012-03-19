@@ -29,31 +29,25 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 #
 # Your goal is to write the score method.
 
-def score (dice)
-    sum = 0
-    (1..6).each do |i|
-        idice = dice.select { |d| d == i }
-        if idice.size >= 3
-            sum += (i==1 ? 1000 : i*100)
-        end
-        sum += (idice.size % 3) * 100   if i == 1
-        sum += (idice.size % 3) *  50   if i == 5
-    end
-    sum
-end
-
-#TODO figure outthis Koan. 
-# pulled soution from: http://stackoverflow.com/questions/4749973/ruby-greed-koan-how-can-i-improve-my-if-then-soup/7278047#7278047
-# questions about array's.
-# 1. Logic setup; Is this the best approach to pull information from array?
-	# Step 1. Grab the array item
-	# Step 2. Assign the array item the 'score' value
-	# Step 3. Add the array item value to sum
-# 2. How do I set this up?
-# I had trouble with the following;
-	# Language issue: Figuring out how to Store my results from an array iteration. I think it's a += into variable. Trying to set that up.
-	# 
+def score(dice)
+  @roll = []
+  @roll.push(dice)
   
+  @roll.count(1) > 2 : 1000 * @roll.count(1) : 
+  
+  def faces
+    ones = @roll.count(1)
+    if ones < 3
+      puts ones * 100
+    else
+      if ones == 3
+        puts 1000
+    elsif
+      if ones > 3
+       puts 1000 + ones * 100
+    end
+  end
+end
 
 
 class AboutScoringProject < EdgeCase::Koan
