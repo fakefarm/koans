@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/edgecase')
+require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 # Greed is a dice game where you roll up to five dice to accumulate
 # points.  The following "score" function will be used to calculate the
@@ -29,34 +29,11 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 #
 # Your goal is to write the score method.
 
-def score (dice)
-    sum = 0
-    (1..6).each do |i|
-        idice = dice.select { |d| d == i }
-        if idice.size >= 3
-            sum += (i==1 ? 1000 : i*100)
-        end
-        sum += (idice.size % 3) * 100   if i == 1
-        sum += (idice.size % 3) *  50   if i == 5
-    end
-    sum
+def score(dice)
+  # You need to write this method
 end
 
-#TODO figure outthis Koan. 
-# pulled soution from: http://stackoverflow.com/questions/4749973/ruby-greed-koan-how-can-i-improve-my-if-then-soup/7278047#7278047
-# questions about array's.
-# 1. Logic setup; Is this the best approach to pull information from array?
-	# Step 1. Grab the array item
-	# Step 2. Assign the array item the 'score' value
-	# Step 3. Add the array item value to sum
-# 2. How do I set this up?
-# I had trouble with the following;
-	# Language issue: Figuring out how to Store my results from an array iteration. I think it's a += into variable. Trying to set that up.
-	# 
-  
-
-
-class AboutScoringProject < EdgeCase::Koan
+class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
     assert_equal 0, score([])
   end
@@ -92,6 +69,9 @@ class AboutScoringProject < EdgeCase::Koan
   def test_score_of_mixed_is_sum
     assert_equal 250, score([2,5,2,2,3])
     assert_equal 550, score([5,5,5,5])
+    assert_equal 1100, score([1,1,1,1])
+    assert_equal 1200, score([1,1,1,1,1])
+    assert_equal 1150, score([1,1,1,5,1])
   end
 
 end
